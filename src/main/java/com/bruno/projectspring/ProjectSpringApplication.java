@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.bruno.projectspring.enums.Category;
 import com.bruno.projectspring.model.Course;
 import com.bruno.projectspring.repository.CourseRepository;
 
@@ -22,8 +23,8 @@ public class ProjectSpringApplication {
 			courseRepository.deleteAll();
 
 			Course c = new Course();
-			c.setName("Matemática");
-			c.setCategory("exatas");
+			c.setName("Raiz Quadrada");
+			c.setCategory(Category.PORTUGUÊS);
 
 			courseRepository.save(c);
 		};
