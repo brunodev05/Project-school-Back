@@ -1,8 +1,12 @@
 package com.bruno.projectspring.dto.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import com.bruno.projectspring.dto.CourseDTO;
+import com.bruno.projectspring.dto.LessonDTO;
 import com.bruno.projectspring.enums.Category;
 import com.bruno.projectspring.enums.Status;
 import com.bruno.projectspring.model.Course;
@@ -15,9 +19,15 @@ public class CourseMapper {
             return null;
             
         }
-        return new CourseDTO(course.getId(), course.getName(), course.getCategory().getValue(), course.getStatus().getValue());
+        List<LessonDTO> lessons = course.getLessons()
+        .stream()
+        .map(lesson -> new LessonDTO(lesson.getId(), lesson.getName(), lesson.getYoutubeUrl()))
+        .collect(Collectors.toList());
+        return new CourseDTO(course.getId(), course.getName(), course.getCategory().getValue(),
+        lessons);
     }
-
+        
+        
     public Course toEntity(CourseDTO courseDTO){
         if (courseDTO == null) {
             return null; }
@@ -37,14 +47,10 @@ public class CourseMapper {
             return null;
         }
         return switch (value) {
-            case "Matemática" -> Category.MATEMATICA;
-            case "Português" -> Category.PORTUGUÊS;
-            case "Biologia" -> Category.BIOLOGIA;
-            case "Química" -> Category.QUÍMICA;
-            case "Física" -> Category.FÍSICA;
-            case "História" -> Category.HISTÓRIA;
-            case "Geografia" -> Category.GEOGRAFIA;
-            case "Artes" -> Category.ARTES;
+            case "Redes" -> Category.REDES;
+            case "Front-end" -> Category.FRONT_END;
+            case "Back-end" -> Category.BACK_END;
+           
             default -> throw new IllegalArgumentException("Categoria inválida: " + value);
         };
     }

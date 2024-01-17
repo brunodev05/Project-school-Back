@@ -1,5 +1,7 @@
 package com.bruno.projectspring.dto;
 
+import java.util.List;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +14,8 @@ public record CourseDTO(
     @JsonProperty("_id")  Long id, 
     @NotBlank @NotNull @Length(min = 5, max = 100) String name,
      @NotNull @Length(max =10)  @Pattern(regexp = "Matemática|Português" ) String category, 
-     @NotNull @Length(max = 10) @Pattern(regexp = "Ativo|Inativo" )String status) {
+     List<LessonDTO> lessons
+     ) {
 
 
 

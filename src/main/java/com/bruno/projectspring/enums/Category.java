@@ -1,9 +1,9 @@
 package com.bruno.projectspring.enums;
 
-import lombok.val;
 
 public enum Category {
-    MATEMATICA ("Matemática"), PORTUGUÊS("Português"), BIOLOGIA("Biologia"), QUÍMICA("Química"), FÍSICA("Física"), HISTÓRIA("História"), GEOGRAFIA("Geografia"), ARTES ("Artes");
+    REDES("Redes"), FRONT_END("Front-End"), BACK_END("Back-End") ;
+
 
     private String value;
 
