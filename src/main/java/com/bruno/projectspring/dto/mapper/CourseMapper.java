@@ -40,6 +40,7 @@ public class CourseMapper {
             course.setId(courseDTO.id());
         }
         course.setName(courseDTO.name());
+        System.out.println(courseDTO.category());
         course.setCategory(convertCategoryValue(courseDTO.category()));
 
         List<Lesson> lessons = courseDTO.lessons().stream().map(lessonDTO -> {
@@ -60,8 +61,8 @@ public class CourseMapper {
             return null;
         }
         return switch (value) {
-            case "Front-end" -> Category.FRONT_END;
-            case "Back-end" -> Category.BACK_END;
+            case "Front-End" -> Category.FRONT_END;
+            case "Back-End" -> Category.BACK_END;
             default -> throw new IllegalArgumentException("Categoria inválida: " + value);
         };
     }
